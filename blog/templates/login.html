@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - {{ blog_title }}</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h5 {
+            color: #e74c3c;
+            font-size: 1.2rem;
+        }
+
+        /* Centered Container */
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container img {
+            margin-bottom: 20px;
+            border-radius: 50%;
+        }
+
+        .login-container h3 {
+            margin-bottom: 20px;
+            color: #ecf0f1;
+            font-size: 2rem;
+            animation: fadeInTitle 1s ease-in-out;
+        }
+
+        .login-container label {
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+        }
+
+        /* Button Styles */
+        .login-container input[type="submit"],
+        .login-container .signup-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            width: 48%;
+            display: inline-block;
+        }
+
+        .login-container input[type="submit"]:hover,
+        .login-container .signup-btn:hover {
+            background-color: #9b59b6;
+        }
+
+        /* Animations */
+        @keyframes fadeInTitle {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInForm {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Form Container -->
+    <div class="login-container">
+        <!-- Display Messages -->
+        {% for message in messages %}
+        <h5>{{ message }}</h5>
+        {% endfor %}
+        
+        <!-- Display Icon -->
+        <img src="{% static 'icon.png' %}" alt="Login Icon" height="120" width="120">
+        
+        <!-- Login Form -->
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <h3>Login</h3>
+            
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <div style="margin-top: 20px;">
+                <input type="submit" value="Login">
+                <br>
+                <br>
+                <a href="{% url 'register' %}" class="signup-btn">Signup</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

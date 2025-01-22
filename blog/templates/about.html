@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}About - {{ blog_title }}{% endblock %}
+
+{% block content %}
+<style>
+    /* About Section Styling */
+    .about {
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #16a085, #1abc9c);
+        color: white;
+        text-align: center;
+        animation: fadeInAbout 1s ease-in-out;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin: 50px auto;
+        max-width: 800px;
+    }
+
+    .about h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #ffffff;
+        animation: fadeInText 1s ease-in-out;
+    }
+
+    .about p {
+        font-size: 1.3rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        color: #ecf0f1;
+        animation: fadeInText 1.2s ease-in-out;
+    }
+
+    .about-details {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-top: 20px;
+        text-align: left;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        color: #ecf0f1;
+        animation: fadeInBox 1.5s ease-in-out;
+    }
+
+    .about-details p {
+        margin-bottom: 15px;
+    }
+
+    /* Animations */
+    @keyframes fadeInAbout {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInText {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInBox {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+
+<section class="about">
+    <!-- Main Heading for About Page -->
+    <h2>About {{ blog_title }}</h2>
+    <p>Welcome to {{ blog_title }} - your ultimate destination for all things tech. Whether you're a programming enthusiast, a tech geek, or simply curious about the latest in technology, you've come to the right place!</p>
+    
+    <!-- About Details Section -->
+    <div class="about-details">
+        <p>Our blog is dedicated to bringing you insightful articles and updates on the cutting-edge trends in the world of technology. From artificial intelligence to blockchain, programming tips to software reviews, we aim to empower you with knowledge and keep you ahead in the tech race.</p>
+        <p>At {{ blog_title }}, we believe in creating a space where ideas meet innovation. Our mission is to foster a community of tech lovers who are passionate about learning and sharing knowledge. Whether you're here to learn, contribute, or collaborate, we welcome you with open arms.</p>
+        <p>Founded by a group of tech enthusiasts, {{ blog_title }} has grown into a hub for tech-related content that inspires and educates. With each article, we strive to make technology accessible, exciting, and engaging for everyone.</p>
+        <p>So dive in, explore our blog, and join us on this exciting journey through the ever-evolving world of technology!</p>
+    </div>
+</section>
+{% endblock %}

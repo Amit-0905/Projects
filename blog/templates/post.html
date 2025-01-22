@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ post.title }} - {{ blog_title }}{% endblock %}
+
+{% block content %}
+<style>
+    /* Post Detail Styling */
+    .post-detail {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        animation: fadeInPostDetail 1s ease-in-out;
+    }
+
+    .post-detail h1 {
+        font-size: 2.5rem;
+        color: #16a085;
+        margin-bottom: 15px;
+        text-align: center;
+        animation: fadeInText 1.2s ease;
+    }
+
+    .post-detail .post-date {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Post Image Styling */
+    .post-detail .image {
+        max-width: 100%;
+        margin: 20px 0;
+        border-radius: 12px;
+        overflow: hidden;
+        animation: fadeInImage 1s ease-in-out;
+    }
+
+    .post-detail .image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 12px;
+    }
+
+    .post-detail .image img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Post Content */
+    .post-detail p {
+        font-size: 1.2rem;
+        color: #2c3e50;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 20px;
+        animation: fadeInText 1s ease-in-out;
+    }
+
+    /* Animations */
+    @keyframes fadeInPostDetail {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInImage {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes fadeInText {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="post-detail">
+    <!-- Post Title -->
+    <h1>{{ post.title }}</h1>
+
+    <!-- Post Date -->
+    <p class="post-date">Published on: {{ post.published_date }}</p>
+
+    <!-- Post Image -->
+    <center>
+        <div class="image">
+            <img src="{% static random_images|random %}" alt="Post Image" />
+        </div>
+    </center>
+
+    <!-- Post Content -->
+    <p>{{ post.content }}</p>
+</div>
+{% endblock %}

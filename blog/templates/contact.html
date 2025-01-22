@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact - {{ blog_title }}{% endblock %}
+
+{% block content %}
+<style>
+    /* Contact Section Styling */
+    .responce_msg{
+        color: #34ea0b;
+    }
+    .contact {
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #3498db, #1abc9c);
+        color: white;
+        text-align: center;
+        animation: fadeInContact 1s ease-in-out;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin: 50px auto;
+        max-width: 800px;
+    }
+
+    .contact h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #ffffff;
+        animation: fadeInText 1s ease-in-out;
+    }
+
+    .contact p {
+        font-size: 1.3rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        color: #ecf0f1;
+        animation: fadeInText 1.2s ease-in-out;
+    }
+
+    .contact-details {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-top: 20px;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        color: #ecf0f1;
+        animation: fadeInBox 1.5s ease-in-out;
+    }
+
+    .contact-details p {
+        margin-bottom: 15px;
+    }
+
+    .contact-form {
+        margin-top: 30px;
+        text-align: left;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        color: #ecf0f1;
+    }
+
+    .contact-form label, .contact-form input, .contact-form textarea {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .contact-form label {
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .contact-form input, .contact-form textarea {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+    }
+
+    .contact-form input[type="submit"] {
+        background-color: #3498db;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .contact-form input[type="submit"]:hover {
+        background-color: #9b59b6;
+    }
+
+    /* Animations */
+    @keyframes fadeInContact {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInText {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInBox {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+
+<section class="contact">
+    <!-- Main Heading for Contact Page -->
+    <div class="responce_msg">
+        {% for message in messages %}
+        <h3 align="center">{{message}}</h3>
+        {% endfor %}
+     </div>
+    <h2>Contact Us</h2>
+    <p>If you have any inquiries, suggestions, or collaboration ideas, don't hesitate to reach out. We're always excited to hear from our readers and fellow tech enthusiasts!</p>
+    
+    <!-- Contact Details Section -->
+    <div class="contact-details">
+        <p><strong>Email:</strong> contact@{{ blog_title }}.com</p>
+        <p><strong>Phone:</strong> +1 (123) 456-7890</p>
+        <p><strong>Address:</strong> 123 Tech Avenue, Silicon City, Techland 10101</p>
+        <p>We're always here to provide support or answer any questions you may have. Feel free to drop us a message!</p>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+        <form action="{% url 'contact_submit' %}" method="POST">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+
+            <input type="submit" value="Send Message">
+        </form>
+    </div>
+</section>
+{% endblock %}
